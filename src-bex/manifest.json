@@ -1,0 +1,53 @@
+{
+  "name": "TagMachine",
+  "description": "TagMachine web extension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "oauth2": {
+    "client_id": "980761075576-hvso5g3ojknf45lq1bbfrgl6041291sl.apps.googleusercontent.com",
+    "scopes": [ "profile", "email" ]
+  },
+  "icons": {
+    "16": "icons/icon16x16.png",
+    "48": "icons/icon48x48.png",
+    "128": "icons/icon128x128.png"
+  },
+  "browser_action": {
+    "default_title": "TagMachine",
+    "default_popup": "www/index.html#/popup"
+  },
+  "background": {
+    "scripts": [
+      "www/bex-background.js",
+      "js/background.js"
+    ],
+    "persistent": true
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": [
+      "www/bex-content-script.js",
+      "js/content-script.js"
+    ],
+    "css": [
+      "css/content-css.css"
+    ]
+    }],
+    "permissions": [
+      "<all_urls>",
+      "storage",
+      "tabs",
+      "activeTab",
+      "identity",
+      "declarativeContent"
+    ],
+    "web_accessible_resources": [
+      "www/*",
+      "js/*",
+      "css/*",
+      "<all_urls>"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval' http://127.0.0.1; object-src 'self'",
+    "options_page": "www/index.html#/options",
+    "devtools_page": "www/index.html#/devtools"
+}
